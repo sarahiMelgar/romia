@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fondo Animado de Abejas y Flores</title>
+  <style>
+    /* Estilos generales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #b3e5fc; /* Color de cielo */
+      overflow: hidden;
+    }
+
+    /* Encabezado y pie de página */
+    .header, .footer {
+      position: fixed;
+      width: 100%;
+      height: 100px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: 1;
+      margin-top: 20px; /* Espacio en la parte superior del encabezado */
+    }
+
+    .header {
+      top: 0;
+      background-image: url('header.png');
+    }
+
+    .footer {
+      bottom: 0;
+      text-align: center;
+      padding: 10px 0;
+      background-color: #b3e5fc;
+      height: 150px;
+      z-index: 1;
+    }
+
+    .footer img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .bee-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    /* Estilo de las abejas y flores */
+    .bee, .flower {
+      position: absolute;
+      animation: move 10s linear infinite;
+    }
+
+    /* Animación para el movimiento de las abejas y flores */
+    @keyframes move {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(200px, -100px); }
+      50% { transform: translate(-200px, -150px); }
+      75% { transform: translate(200px, 100px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* Posiciones y retraso iniciales para las abejas */
+    .bee {
+      width: 50px; /* Ajusta el tamaño según tu imagen */
+      height: 50px;
+      background-image: url('abejita.png');
+      background-size: contain; /* Asegúrate de que la imagen se ajuste */
+      background-repeat: no-repeat;
+    }
+
+    .bee:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .bee:nth-child(2) { top: 50%; left: 30%; animation-delay: 2s; }
+    .bee:nth-child(3) { top: 70%; left: 60%; animation-delay: 4s; }
+    .bee:nth-child(4) { top: 30%; left: 80%; animation-delay: 6s; }
+    .bee:nth-child(5) { top: 40%; left: 15%; animation-delay: 1s; }
+    .bee:nth-child(6) { top: 60%; left: 40%; animation-delay: 3s; }
+
+    /* Estilo de las flores */
+    .flower {
+      width: 40px;
+      height: 40px;
+      background-image: url('flor.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* Posiciones para las flores */
+    .flower:nth-child(7) { bottom: 10%; left: 20%; }
+    .flower:nth-child(8) { bottom: 15%; left: 40%; }
+    .flower:nth-child(9) { bottom: 5%; left: 70%; }
+    .flower:nth-child(10) { bottom: 12%; left: 85%; }
+    .flower:nth-child(11) { bottom: 20%; left: 10%; }
+    .flower:nth-child(12) { bottom: 18%; left: 30%; }
+    .flower:nth-child(13) { bottom: 25%; left: 50%; }
+    .flower:nth-child(14) { bottom: 15%; left: 65%; }
+    .flower:nth-child(15) { bottom: 22%; left: 80%; }
+
+    /* Estilos para la invitación */
+    .invitation {
+    position: absolute;
+    top: 45%; /* Aumenta el valor para bajar la invitación más */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centra el texto */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para un efecto elevado */
+    text-align: center;
+    z-index: 2; /* Asegúrate de que esté por encima */
+}
+
+
+    .invitation h1 {
+      color: #ff4081; /* Color rosa */
+      margin-bottom: 10px;
+    }
+
+    .invitation p {
+      color: #333; /* Color de texto */
+      margin: 5px 0;
+    }
+
+    /* Estilos para el carrusel */
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 400px; /* Ajusta según tu diseño */
+      overflow: hidden;
+      margin: 20px auto; /* Centrar el carrusel */
+    }
+
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+      min-width: 100%; /* Cada imagen ocupará el 100% del carrusel */
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-item img {
+      width: 100%; /* Todas las imágenes tendrán el mismo tamaño */
+      height: 300px; /* Altura fija para todas las imágenes */
+      object-fit: cover; /* Ajustar la imagen dentro del contenedor */
+    }
+
+    /* Controles del carrusel */
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 3;
+    }
+
+    .carousel-control.left {
+      left: 10px;
+    }
+
+    .carousel-control.right {
+      right: 10px;
+    }
+
+    /* Estilos para el botón de ubicación */
+    .location-button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ff4081; /* Color rosa */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 2; /* Asegúrate de que esté por encima */
+    }
+
+    .location-button:hover {
+      background-color: #e91e63; /* Color más oscuro al pasar el mouse */
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <div class="header"></div>
+  
+  <div class="bee-container">
+    <!-- Abejas -->
+    <div class="bee"></div>
+    <div class="bee"></div>
+    <div class="bee"></div>
+    <div class="bee"></div>
+    <div class="bee"></div>
+    <div class="bee"></div>
+    <!-- Flores -->
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+  </div>
+
+  <!-- Invitación -->
+  <div class="invitation">
+    <h1>¡Estás invitado!</h1>
+        <p>Es hora de celebrar mi primer cumpleaños </p>
+        <p><strong>Romina Noemi Pastrana</strong> 🐝</p>
+        <p><strong>Fecha:</strong> Domingo, 1 de Diciembre</p>
+        <p><strong>Hora:</strong> 3:00 PM</p>
+    
+    <!-- Carrusel de imágenes -->
+
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item"><img src="romiBlanca.jpeg" alt="Imagen 1"></div>
+        <div class="carousel-item"><img src="romichalino.jpeg" alt="Imagen 2"></div>
+        <div class="carousel-item"><img src="romicomida.jpeg" alt="Imagen 3"></div>
+        <div class="carousel-item"><img src="romimaila.jpeg" alt="Imagen 4"></div>
+        <div class="carousel-item"><img src="romimaila.jpeg" alt="Imagen 4"></div>
+        <div class="carousel-item"><img src="carlos.jpeg" alt="Imagen 5"></div>
+        <div class="carousel-item"><img src="romiyes.jpeg" alt="Imagen 6"></div>
+        <div class="carousel-item"><img src="suegra.jpeg" alt="Imagen 7"></div>
+        <div class="carousel-item"><img src="suegro.jpeg" alt="Imagen 8"></div>
+        <div class="carousel-item"><img src="eli.jpeg" alt="Imagen 7"></div>
+        <div class="carousel-item"><img src="angel.jpeg" alt="Imagen 8"></div>
+        <div class="carousel-item"><img src="todMel.jpeg" alt="Imagen 9"></div>
+        <div class="carousel-item"><img src="mis papas.jpeg" alt="Imagen 10"></div>
+        <div class="carousel-item"><img src="cuñisyo.jpeg" alt="Imagen 11"></div>
+      </div>
+      <button class="carousel-control left" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="carousel-control right" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+    
+    <!-- Botón de ubicación -->
+    <button class="location-button" onclick="displayLocation()">Mostrar Ubicación</button>
+  </div>
+
+  <!-- Pie de página -->
+  <div class="footer">
+    <img src="flores.png" alt="Footer">
+  </div>
+
+  <script>
+    let currentSlide = 0;
+
+    function moveSlide(direction) {
+      const slides = document.querySelectorAll('.carousel-item');
+      const totalSlides = slides.length;
+      
+      // Mueve la diapositiva actual
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      const offset = -currentSlide * 100; // Mueve el contenedor para mostrar la nueva diapositiva
+      document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+    }
+
+    function displayLocation() {
+      // Cambia la URL a tu ubicación en Google Maps
+      window.open("https://maps.app.goo.gl/iX171nDBaQA39bdt7", "_blank");
+    }
+  </script>
+</body>
+</html>

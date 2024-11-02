@@ -1,0 +1,90 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #b3e5fc; /* Color de cielo */
+    overflow: hidden;
+  }
+  
+  .bee-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Estilo de las abejas */
+  .bee {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background: yellow;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Forma ovalada */
+    border: 2px solid black;
+    animation: fly 10s linear infinite;
+  }
+  
+  .bee::before, .bee::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    top: -8px;
+  }
+  
+  .bee::before {
+    left: -8px; /* Ala izquierda */
+  }
+  
+  .bee::after {
+    right: -8px; /* Ala derecha */
+  }
+  
+  /* Rayas de la abeja */
+  .bee .stripe {
+    position: absolute;
+    width: 6px;
+    height: 20px;
+    background: black;
+    border-radius: 5px;
+  }
+  
+  .bee .stripe:nth-child(1) { left: 6px; }
+  .bee .stripe:nth-child(2) { left: 14px; }
+  .bee .stripe:nth-child(3) { left: 22px; }
+  
+  /* Animación de las abejas */
+  @keyframes fly {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(200px, -100px) rotate(45deg);
+    }
+    50% {
+      transform: translate(-200px, -150px) rotate(90deg);
+    }
+    75% {
+      transform: translate(200px, 100px) rotate(135deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(180deg);
+    }
+  }
+  
+  /* Posiciones iniciales aleatorias para cada abeja */
+  .bee:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+  .bee:nth-child(2) { top: 50%; left: 30%; animation-delay: 2s; }
+  .bee:nth-child(3) { top: 70%; left: 60%; animation-delay: 4s; }
+  .bee:nth-child(4) { top: 30%; left: 80%; animation-delay: 6s; }
+  
